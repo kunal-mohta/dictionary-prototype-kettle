@@ -1,0 +1,14 @@
+{
+    "type": "config2",
+    "options": {
+        "gradeNames": "fluid.component",
+        "option2": "OPTION2",
+        "components": {
+            "subcomponent1": {
+                "type": "kettle.tests.subcomponent1"
+            }
+        }
+    },
+    "mergeConfigs": "./config4.json",
+    "require": "%kettle/tests/requires/testModuleRelativeRequire.js"
+}

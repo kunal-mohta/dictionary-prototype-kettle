@@ -1,0 +1,13 @@
+{
+    "type": "config4",
+    "options": {
+        "components": {
+            "subcomponent1": {
+                "options": {
+                    "gradeNames": ["kettle.tests.subcomponent3"]
+                }
+            }
+        }
+    },
+    "require": "test-module"
+}

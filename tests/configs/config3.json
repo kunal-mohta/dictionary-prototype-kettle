@@ -1,0 +1,17 @@
+{
+    "type": "config3",
+    "options": {
+        "gradeNames": ["fluid.modelComponent"],
+        "option3": "OPTION3",
+        "components": {
+            "subcomponent1": {
+                "options": {
+                    "gradeNames": ["kettle.tests.subcomponent2"]
+                }
+            }
+        }
+    },
+    "require": [
+        "../requires/testBareRequire.js"
+    ]
+}

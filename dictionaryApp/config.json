@@ -1,0 +1,29 @@
+{
+    "type":"service.dictionary",
+    "options":{
+        "gradesNames":"fluid.component",
+        "components":{
+            "server":{
+                "type":"kettle.server",
+                "options":{
+                    "port":8081,
+                    "components":{
+                        "oxfordApp":{
+                            "type":"kettle.app",
+                            "options":{
+                                "requestHandlers":{
+                                    "getDefinition":{
+                                        "type":"service.dictionary.getDef",
+                                        "route":"/definition/:word",
+                                        "method":"get"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "require":"./handlers.js"
+}
