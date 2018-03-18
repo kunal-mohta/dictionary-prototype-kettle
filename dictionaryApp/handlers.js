@@ -34,7 +34,7 @@ service.dictionary.handleGetDef = function(request){
                 });
             }
             //word found
-            else{
+            else if(res.statusCode == 200){
                 var scrapedDef = JSON.parse(body).results[0].lexicalEntries[0].entries[0].senses;
                 var defArray = [];
                 var i;
