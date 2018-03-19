@@ -41,7 +41,7 @@
   <nav class="nav-extended">
         <div class="nav-wrapper">
           <a href="#" class="brand-logo"><img style = "width:80%; margin-top:2vh;" src = "logo.png"></a>
-          <a href = "https://github.com/kunal-mohta/dictionary-prototype-kettle" target = "_blank" id = "send-request" class="waves-effect waves-light btn col s1" style = "margin-top:2vh; background:#7961f0; float:right; margin-right:2vw;">Find Code on Github</a>
+          <a href = "https://github.com/kunal-mohta/dictionary-prototype-kettle" target = "_blank" class="waves-effect waves-light btn col s1" style = "margin-top:2vh; background:#7961f0; float:right; margin-right:2vw;">Find Code on Github</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
         <div class="nav-content">
@@ -93,6 +93,7 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script>
         function getResponse(){
+            console.log("asdf");
             var inputurl = document.getElementById("url").value;
             var baseurl = "http://139.59.81.132";
             $.ajax({
