@@ -16,6 +16,11 @@
                                         "type":"service.dictionary.getDef",
                                         "route":"/definition/:word",
                                         "method":"get"
+                                    },
+                                    "getExamples":{
+                                        "type":"service.dictionary.getEx",
+                                        "route":"/definition/examples/:word",
+                                        "method":"get"
                                     }
                                 }
                             }
