@@ -1,0 +1,29 @@
+{
+    "type":"service.translation",
+    "options":{
+        "gradesNames":"fluid.component",
+        "components":{
+            "server":{
+                "type":"kettle.server",
+                "options":{
+                    "port":8081,
+                    "components":{
+                        "oxfordApp":{
+                            "type":"kettle.app",
+                            "options":{
+                                "requestHandlers":{
+                                    "getDefinition":{
+                                        "type":"service.translation.translate",
+                                        "route":"/translation/:from-:to",
+                                        "method":"post"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "require":"./handlers.js"
+}
