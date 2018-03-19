@@ -14,7 +14,7 @@
                                 "requestHandlers":{
                                     "getDefinition":{
                                         "type":"service.translation.translate",
-                                        "route":"/:from-:to",
+                                        "route":"/translation/:from-:to",
                                         "method":"post"
                                     }
                                 }
