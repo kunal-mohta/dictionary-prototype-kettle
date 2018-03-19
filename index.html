@@ -9,15 +9,28 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
+        body{
+          background:#1c192a;
+        }
+
         .nav-extended{
-            background:#0049b0;
+            background:linear-gradient(to right, #6340f5, #ef7ec6);
         }
 
         .endpoints{
             font-size:2vh;
-            background:#9fa8da;
+            background:#232131;
             padding:1vh;
             border-radius:2px;
+            color:#6340f5;
+        }
+
+        #response-content{
+          color:#2675af;
+        }
+
+        .input-field{
+          color:white;
         }
     </style>
   </head>
@@ -28,56 +41,63 @@
   <nav class="nav-extended">
         <div class="nav-wrapper">
           <a href="#" class="brand-logo"><img style = "width:80%; margin-top:2vh;" src = "logo.png"></a>
+          <a href = "https://github.com/kunal-mohta/dictionary-prototype-kettle" target = "_blank" id = "send-request" class="waves-effect waves-light btn col s1" style = "margin-top:2vh; background:#7961f0; float:right; margin-right:2vw;">Find Code on Github</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
         <div class="nav-content">
           <ul class="tabs tabs-transparent">
             <li class="tab"><a  class="active" href="#test1">Test Prototype</a></li>
-            <li class="tab"><a href="#test2">See Code</a></li>
           </ul>
         </div>
     </nav>
 
       <div id="test1" class="col s12" style = "margin-top:2vh">
             <div class="row">
-                    <div class="input-field col s5">
-                      <input id="url" type="text">
-                      <label class="active" for="first_name2">URL</label>
-                    </div>
-                    <a id = "send-request" class="waves-effect waves-light btn col s1 deep-purple darken-4" style = "margin-top:2vh">send request</a>
+              <div class="input-field col s1">
+                <input id="method" type="text">
+                <label for="first_name2">METHOD</label>
+              </div>
+              <div class="input-field col s5">
+                <input id="url" type="text">
+                <label for="first_name2">END POINT</label>
+              </div>
+              <div class="input-field col s5">
+                <input id="body" type="text">
+                <label for="first_name2">REQUEST BODY</label>
+              </div>
+              <a id = "send-request" class="waves-effect waves-light btn col s1" style = "margin-top:2vh; background:#7961f0;">send request</a>
                     
             </div>
             <div class="row">
                     <div class="col s11 m6">
-                      <div class="card indigo lighten-5 ">
+                      <div class="card" style = "background:#2a273d;">
                         <div class="card-content white-text" style = "height:72vh; overflow:scroll;">
-                          <span class="card-title blue-text text-darken-4" style = "font-weight:bold;">Response</span>
-                          <pre style = "font-size:1.7vh" id = "response-content" class = "blue-text text-darken-2"></pre>
+                          <span class="card-title" style = "font-weight:bold; color:#ef7ec6;">Response</span>
+                          <pre style = "font-size:1.7vh" id = "response-content"></pre>
                         </div>
                       </div>
                     </div>
 
                     <div class="col s11 m6">
-                            <div class="card indigo darken-2">
+                            <div class="card" style = "background:#2a273d;">
                               <div class="card-content white-text" style = "height:72vh; overflow:scroll;">
-                                <span class="card-title" style = "font-weight:bold;">Available End Points</span>
+                                <span class="card-title" style = "font-weight:bold; color:#ef7ec6;">Available End Points</span>
                                 <div class = "row endpoints">GET http://139.59.81.132/definition/:{word}</div>
                               </div>
                             </div>
                           </div>
                   </div>
       </div>
-      <div id="test2" class="col s12">Test 2</div>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script>
         function getResponse(){
             var inputurl = document.getElementById("url").value;
-            
+            var baseurl = "http://139.59.81.132";
             $.ajax({
                 type:'GET',
-                url:inputurl,
+                url:baseurl+inputurl,
                 complete:function(xhr,textstatus){
                     document.getElementById("response-content").innerHTML = JSON.stringify(xhr.responseJSON, null, 2);
                 },
