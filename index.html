@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset='utf-8'>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -15,14 +16,6 @@
 
         .nav-extended{
             background:linear-gradient(to right, #6340f5, #ef7ec6);
-        }
-
-        .endpoints{
-            font-size:2vh;
-            background:#232131;
-            padding:1vh;
-            border-radius:2px;
-            color:#6340f5;
         }
 
         #response-content{
@@ -54,15 +47,15 @@
       <div id="test1" class="col s12" style = "margin-top:2vh">
             <div class="row">
               <div class="input-field col s1">
-                <input id="method" type="text">
+                <input value = "post" id="method" type="text">
                 <label for="first_name2">METHOD</label>
               </div>
               <div class="input-field col s5">
-                <input id="url" type="text">
+                <input value = "/translation/en-ru" id="url" type="text">
                 <label for="first_name2">END POINT</label>
               </div>
               <div class="input-field col s5">
-                <input id="body" type="text">
+                <input value = '{"text":"hello world"}' id="body" type="text">
                 <label for="first_name2">REQUEST BODY</label>
               </div>
               <a id = "send-request" class="waves-effect waves-light btn col s1" style = "margin-top:2vh; background:#7961f0;">send request</a>
@@ -79,35 +72,91 @@
                     </div>
 
                     <div class="col s11 m6">
-                            <div class="card" style = "background:#2a273d;">
-                              <div class="card-content white-text" style = "height:72vh; overflow:scroll;">
-                                <span class="card-title" style = "font-weight:bold; color:#ef7ec6;">Available End Points</span>
-                                <div class = "row endpoints">GET http://139.59.81.132/definition/:{word}</div>
+                      <div class="card" style = "background:#2a273d;">
+                        <div class="card-content white-text" style = "height:72vh; overflow:scroll;">
+                          <span class="card-title" style = "font-weight:bold; color:#ef7ec6;">Available End Points</span>
+                          <div class="row">
+                            <div class="col m12">
+                              <div class="card" style = "background:#232131;">
+                                <div class="card-content white-text">
+                                  <span class="card-title" style = "color:#6340f5; font-size:130%;">GET /definition/:{word}</span>
+                                  <p>Get the definition of the word with examples</p>
+                                </div>
                               </div>
                             </div>
+                            <div class="col m12">
+                                <div class="card" style = "background:#232131;">
+                                  <div class="card-content white-text">
+                                    <span class="card-title" style = "color:#6340f5; font-size:130%;">GET /definition/examples/:{word}</span>
+                                    <p>Get only the examples for the use of the word</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col m12">
+                                  <div class="card" style = "background:#232131;">
+                                    <div class="card-content white-text">
+                                      <span class="card-title" style = "color:#6340f5; font-size:130%;">GET /translation/:{from_lang}-{to_lang}</span>
+                                      <p>Gives the translation of the test sent in the request body. The request body should be of the form 
+                                        <pre>
+&#123;
+"text":"text to translate"
+&#125;
+                                        </pre>
+                                        List of supported language codes is give <a href = "https://tech.yandex.com/translate/doc/dg/concepts/api-overview-docpage/" target = "_blank">here</a>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
                           </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
       </div>
     <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script>
         function getResponse(){
             console.log("asdf");
             var inputurl = document.getElementById("url").value;
             var baseurl = "http://139.59.81.132";
-            $.ajax({
-                type:'GET',
-                url:baseurl+inputurl,
-                complete:function(xhr,textstatus){
-                    document.getElementById("response-content").innerHTML = JSON.stringify(xhr.responseJSON, null, 2);
-                },
-                error:function(xhr,textstatus,err){
-                    console.log(err);
-                }
-            });
+            var method = document.getElementById("method").value.toUpperCase();
+            var body = document.getElementById("body").value;
+
+            try{
+              if(method === "GET"){
+                $.ajax({
+                  type:method,
+                  url:baseurl+inputurl,
+                  complete:function(xhr,textstatus){
+                      document.getElementById("response-content").innerHTML = JSON.stringify(xhr.responseJSON, null, 2);
+                  },
+                  error:function(xhr,textstatus,err){
+                      console.log(err);
+                  }
+                });
+              }
+              else if(method === "POST"){
+                $.ajax({
+                  type:method,
+                  url:baseurl+inputurl,
+                  data:JSON.parse(body.toString()),
+                  contentType:'application/x-www-form-urlencoded',
+                  complete:function(xhr,textstatus){
+                      console.log(xhr);
+                      document.getElementById("response-content").innerHTML = JSON.stringify(xhr.responseJSON, null, 2);
+                  },
+                  error:function(xhr,textstatus,err){
+                      console.log(err);
+                  }
+                });
+              }
+            }
+            catch(e){
+              document.getElementById("response-content").innerHTML = "Something went wront \n Error Message: \n"+e;
+            }
         }
-        
         document.getElementById("send-request").addEventListener("click", getResponse);
     </script>
   </body>
