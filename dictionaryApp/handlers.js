@@ -88,7 +88,7 @@ service.dictionary.handleGetEx = function(request){
                 request.res.send({
                     statusCode: 500,
                     responseMessage: "Some error occured, please try contacting the service provider.",
-                    jsonDefinitions: [],
+                    jsonExamples: [],
                 });
             }
             //word not found 
@@ -96,7 +96,7 @@ service.dictionary.handleGetEx = function(request){
                 request.res.send({
                     statusCode: 404,
                     responseMessage: "Unknown word",
-                    jsonDefinitions: [],
+                    jsonExamples: [],
                 });
             }
             //word found
@@ -116,7 +116,7 @@ service.dictionary.handleGetEx = function(request){
                 request.res.send({
                     statusCode: 200,
                     responseMessage: "Word Found",
-                    jsonDefinitions: exArray
+                    jsonExamples: exArray
                 });
             }
         }
@@ -126,7 +126,7 @@ service.dictionary.handleGetEx = function(request){
             request.res.send({
                 statusCode: 500,
                 responseMessage: "Some error occured, please try contacting the service provider.",
-                jsonDefinitions: []
+                jsonExamples: []
             });
         }
     }); 
