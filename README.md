@@ -1,6 +1,7 @@
 # dictionary-prototype-kettle
 
-Same functioning as [dictionary-prototype](https://github.com/kunal-mohta/dictionary-prototype), but made using [Kettle](https://github.com/fluid-project/kettle) which is an [Infusion](https://docs.fluidproject.org/infusion/development/index.html) server-side framework.
+A basic Dictionary and Translation Service made using [Kettle](https://github.com/fluid-project/kettle) which is an [Infusion](https://docs.fluidproject.org/infusion/development/index.html) server-side framework.\
+Can be tried live [here](http://139.59.81.132/fluid)
 
 ### How to use locally
 #### Clone the Repository
@@ -31,32 +32,10 @@ npm test
 The tests written will be run
 
 ### Requests
-Currently, the only available end point is\
-**GET** `/definition/{word}`
-which means when running locally, the required URL is `http://localhost:8081/definition/{word}`
-
-### Responses
-The standard format of the JSON response is
-```
-"statusCode": Number,
-"responseMessage": String,
-"jsonDefinitions": Array
-```
-More specifically..
-```
-"statusCode": {code},
-"responseMessage": {message},
-"jsonDefinitions": [
-  {
-    "definitions" : [],
-    "examples" : []
-  },
-  {
-    "definitions" : [],
-    "examples" : []
-  },
-  ...
-]
-```
+Currently, the available end points are\
+**GET** `/definition/{word}`\
+**GET** `/definition/examples/{word}`\
+**GET** `/translation/{form_lang}-{to_lang}`\
+For example, `http://localhost:8081/translation/en-ru`
 
 For any queries/suggestions/pointing out issues, contact me at `kunalmohta1818@gmail.com`
