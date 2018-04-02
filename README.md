@@ -1,7 +1,8 @@
 # dictionary-prototype-kettle
 
 A basic Dictionary and Translation Service made using [Kettle](https://github.com/fluid-project/kettle) which is an [Infusion](https://docs.fluidproject.org/infusion/development/index.html) server-side framework.\
-Can be tried live [here](http://139.59.81.132/fluid)
+Can be tried live [here](http://139.59.81.132/fluid)\
+Read the documentation for the API [here](https://app.swaggerhub.com/apis/kunal4/dictionary-prototype/1.0.0) (made using Swagger).
 
 ### How to use locally
 #### Clone the Repository
